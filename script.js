@@ -1,0 +1,163 @@
+// ok uhh time to lay out the scheme
+
+const userArray = [1,2,3,4] 
+var channelsArray = [0,0,0,0,0,0]
+
+
+
+const outTextArrInverted = ["1 owes 2", "1 owes 3", "1 owes 4", "2 owes 3", "2 owes 4", "3 owes 4"]
+const outTextArr = ["2 owes 1", "3 owes 1", "4 owes 1", "3 owes 2", "4 owes 2", "4 owes 3"]
+
+//create some sort of directory for all possible payment channels? 
+//e.g. 1-2, 1-3, 1-4, 2-3, 2-4, 3-4
+    //becoming 0,1,2,3,4,5 in an array, perhaps? switch statement to choose the correct channel
+
+//channels would add when money goes from LO to HI e.g. 1 owes 2.
+//directories would go negative for the opposite direction, cancelling out payments
+//final out would of course adjust this such that it reads 2 owes 1 $5, not 1 owes 2 $-5 thatd be silly
+
+
+
+function checkArrIncludes(inArr){
+    const check = [2,3,4];
+    for (let i = 0; i < inArr.length; i++){
+        if (userArray.includes(inArr[i]) == false){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+//i know, I know, I KNOW THAT THIS IS TERRIBLE WORDING
+//PAYER in this context paid FIRST
+//BENEFICIARIES are those that got something for free and are now paying back...
+ 
+function newPay(amt, beneficiary, payer){
+    var goAhead = false;
+
+    if ((userArray.includes(payer)) && (checkArrIncludes)){
+        //console.log("yayyyy yayy it worked")
+        goAhead = true;
+    }
+
+    let amtEach = 0;
+    amtEach = parseFloat((amt/beneficiary.length).toFixed(2));
+    //console.log(typeof amtEach);
+
+    for (let i = 0; i < beneficiary.length; i++) {
+        
+        
+        //logging system in channels
+        //i know, I know, I KNOW THAT THIS IS TERRIBLE STRUCTURE... but it works. 
+            // fun fact! by design this thing doesn't support uhh splitting bills.
+
+        if (beneficiary[i] !== payer) {
+
+            if (payer == 1){
+                if (beneficiary[i] == 2){
+                    //0 - positive
+                    channelsArray[0] = channelsArray[0] + amtEach;
+
+                }
+                else if (beneficiary[i] == 3){
+                    //1 - positive
+                    channelsArray[1] = channelsArray[1] + amtEach;
+                    
+                }
+                else if (beneficiary[i] == 4){
+                    //2 - positive
+                    channelsArray[2] = channelsArray[2] + amtEach;
+
+                }
+            }
+            else if (payer == 2){
+                if (beneficiary[i] == 1){
+                    //0 - negative
+                    channelsArray[0] = channelsArray[0] - amtEach;
+
+                }
+                else if (beneficiary[i] == 3){
+                    //3 - positive
+                    channelsArray[3] = channelsArray[3] + amtEach;
+                }
+                else if (beneficiary[i] == 4){
+                    //4 - positive
+                    channelsArray[4] = channelsArray[4] + amtEach;
+                }
+            } 
+            else if (payer == 3){
+                if (beneficiary[i] == 2){
+                    //3 - negative
+                    channelsArray[3] = channelsArray[3] - amtEach;
+                }
+                else if (beneficiary[i] == 1){
+                    //1 - negative
+                    channelsArray[1] = channelsArray[1] - amtEach;
+                }
+                else if (beneficiary[i] == 4){
+                    //5 - positive
+                    channelsArray[5] = channelsArray[5] + amtEach;
+                }
+            } 
+            else if (payer == 4){
+                if (beneficiary[i] == 2){
+                    //4 - negative
+                    channelsArray[4] = channelsArray[4] - amtEach;
+
+                }
+                else if (beneficiary[i] == 3){
+                    //5 - negative
+                    channelsArray[5] = channelsArray[5] - amtEach;
+
+                }
+                else if (beneficiary[i] == 1){
+                    //2 - negative
+                    channelsArray[2] = channelsArray[2] - amtEach;
+
+                }
+            }
+
+        
+
+
+
+        //debug basic output for the single payment
+            console.log(`Pay ${amtEach} from guy ${beneficiary[i]} to guy ${payer}`);
+        }
+    }
+
+
+}
+
+newPay(30.25, [1,2,3], 1)
+newPay(9.99, [2,3], 1)
+newPay(23,[1],3)
+newPay(99.20,[4,2],1)
+
+//so new pay can effectively handle each transaction and only record the final out. Now for webapp time...
+
+finalPrtOut()
+
+function finalPrtOut(){
+    console.log("__________")
+
+    console.log("FINAL OUT:")
+
+//final prtout
+    for (let i = 0; i < channelsArray.length; i++){
+        if (channelsArray[i] == 0){
+            //do nothing
+        }
+        else if (channelsArray[i] >= 0){
+            console.log(outTextArr[i] + ": " + channelsArray[i] + " bucks. ");
+        }
+        else {
+            console.log(outTextArrInverted[i] + ": " + (-channelsArray[i]) + " bucks. ");
+
+        }
+
+    }
+
+}
+    

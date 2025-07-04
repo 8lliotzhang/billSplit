@@ -49,8 +49,17 @@ function newPay(amt, beneficiary, payer){
         
         
         //logging system in channels
-        //i know, I know, I KNOW THAT THIS IS TERRIBLE STRUCTURE... but it works. 
-            // fun fact! by design this thing doesn't support uhh splitting bills.
+        //i know, I know, I KNOW THAT THIS IS TERRIBLE STRUCTURE... but it works.
+        //todo: switch case?? not worst code ever but still, uhh, really bad.
+        //is there a way I can separately ID each user using fun mathematics tricks
+        //what if I made them each like a different prime and chose the channel based on the unique product
+            //e.g. map userID 1 and 2 to primes 2,3. product 6 --> 1/2 transaction --> channelArray[0] 
+            //still needs like a six part switch case but its just one layer no nesting
+            //from there just do a comparator check, which one's bigger
+            //from there decide positive or negative yeah
+
+        
+            //fun fact! by design this thing doesn't support uhh splitting bills so hopefully that's handled eventually
 
         if (beneficiary[i] !== payer) {
 

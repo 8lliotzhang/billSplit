@@ -139,15 +139,6 @@ function newPay(amt, beneficiary, payer){
 
 }
 
-newPay(30.25, [1,2,3], 1)
-newPay(9.99, [2,3], 1)
-newPay(23,[1],3)
-newPay(99.20,[4,2],1)
-
-//so new pay can effectively handle each transaction and only record the final out. Now for webapp time...
-
-finalPrtOut()
-
 function finalPrtOut(){
     console.log("__________")
 
@@ -170,3 +161,12 @@ function finalPrtOut(){
 
 }
     
+
+newPay(30.25, [1,2,3], 1)
+newPay(9.99, [2,3], 1)
+newPay(23,[1],3)
+newPay(99.20,[4,2],1)
+
+//so new pay can effectively handle each transaction and only record the final out. Now for webapp time...
+
+finalPrtOut()

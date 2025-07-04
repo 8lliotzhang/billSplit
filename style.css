@@ -1,6 +1,6 @@
-html{
-    padding:0;
-    margin:0;
+body{
+    padding: 0px;
+    margin: 0px;
     font-family: 'Geneva', 'Verdana', 'sans-serif'	
 
 }
@@ -9,12 +9,60 @@ input{
     font-family: 'Geneva', 'Verdana', 'sans-serif'	
 }
 
+#topdiv{
+    padding: 0px;
+    margin: 0px;
+    /*top: 0;*/
+    overflow: scroll;
+    width:100%;
+
+    text-align:center;
+    background-color: rgb(62, 101, 56);
+    color:white
+}
+
+a{
+    color:inherit;
+}
+#wrap{
+    margin: 0 auto;
+    position:relative;
+}
+
 #formdiv{
-    background-color: lightblue;
+    background-color: rgb(173, 230, 177);
     padding: 10px;
+    margin: 20px;
     width: fit-content;
     border-radius: 4px;
+    display: inline-block;    
+    
+
 }
+
+
+#outdiv{
+    background-color: rgb(173, 230, 177);
+    padding: 10px;
+    margin: 20px;
+    margin-left:0;
+    border-radius: 4px;
+    display: inline-block;    
+    position: absolute;
+    top: 0;
+    vertical-align:top;
+
+}
+
+#txtdiv{
+    padding: 10px;
+    margin: 20px;
+    background-color:lightgrey;
+    border-radius:4px;
+    float:left;
+
+}
+
 table, th, td{
     /*border: 1px solid black;*/
     padding: 5px;

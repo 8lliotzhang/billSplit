@@ -2,62 +2,75 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
+        <title>BillSplit</title>
     </head>
     <body>
-        <h1>BillSplit</h1>
-        <div id="formdiv">
-            <form>
-                <table>
-                    <tr>
-                        <td>Cost:
-                        <td colspan="4"><input type="number" id ="amt" step="0.01">
-                    </tr>
-                    <tr>
-                        <td>User 1 - 
-                        <td>Ate?
-                        <td><input type="checkbox" id="user1" name="user1" value="1">
-                        <td>Paid?
-                        <td><input type="radio" id="payer1" name="payer"></td>
-
-                    </tr>
-                    <tr>
-                        <td>User 2 - 
-                        <td>Ate?
-                        <td><input type="checkbox" id="user2" name="user2" value="2">
-                        <td>Paid?
-                        <td><input type="radio" id="payer2" name="payer"></td>
-
-                    </tr>
-                    <tr>
-                        <td>User 3 - 
-                        <td>Ate?
-                        <td><input type="checkbox" id="user3" name="user3" value="3">
-                        <td>Paid?
-                        <td><input type="radio" id="payer3" name="payer"></td>
-
-                    </tr>
-                    <tr>
-                        <td>User 4 - 
-                        <td>Ate?
-                        <td><input type="checkbox" id="user4" name="user4" value="4">
-                        <td>Paid?
-                        <td><input type="radio" id="payer4" name="payer"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="5">
-                        <center>
-                            <input id = "inb" type="submit" value="Add Payment">
-                            <input id= "inb" type="reset" value="Reset">
-                        </center>
-
-                    </tr>
-                </table>
-                
-            </form>
+        <div id="topdiv">
+            <h1>BillSplit</h1>
+            <p>another thing by <a href="https://8lliotzhang.github.io/my-website/">8lliotZ</a></p>
 
         </div>
-        
-        <div>
+        <br>
+        <!-- contain the sbs divs here -->
+        <div id="wrap">
+            <div id="formdiv">
+                <form>
+                    <table>
+                        <tr>
+                            <td>Cost:
+                            <td colspan="4"><input type="number" id ="amt" step="0.01">
+                        </tr>
+                        <tr>
+                            <td>User 1:
+                            <td>Ate?
+                            <td><input type="checkbox" id="user1" name="user1" value="1">
+                            <td>Paid?
+                            <td><input type="radio" id="payer1" name="payer"></td>
+
+                        </tr>
+                        <tr>
+                            <td>User 2: 
+                            <td>Ate?
+                            <td><input type="checkbox" id="user2" name="user2" value="2">
+                            <td>Paid?
+                            <td><input type="radio" id="payer2" name="payer"></td>
+
+                        </tr>
+                        <tr>
+                            <td>User 3: 
+                            <td>Ate?
+                            <td><input type="checkbox" id="user3" name="user3" value="3">
+                            <td>Paid?
+                            <td><input type="radio" id="payer3" name="payer"></td>
+
+                        </tr>
+                        <tr>
+                            <td>User 4:
+                            <td>Ate?
+                            <td><input type="checkbox" id="user4" name="user4" value="4">
+                            <td>Paid?
+                            <td><input type="radio" id="payer4" name="payer"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;" colspan="5">
+                                <input id = "inb" type="submit" value="Add Payment">
+                                <input id= "inb" type="reset" value="Reset">
+                                <input id="inb" type="button" value="Done" onclick="alert('placeholder for running finalprtout');">
+                        </tr>
+                    </table>
+                    
+                </form>
+            </div>
+            <div id="outdiv">
+                <p>
+                    2 owes 1: 64.68 bucks. <br>
+                    1 owes 3: 7.92 bucks. <br> 
+                    4 owes 1: 49.6 bucks. 
+                </p>
+
+            </div>
+        </div>
+        <div id="txtdiv">
             <p>Did you go on a group trip recently with four friends? Did you end up paying for the whole table because you were scared to ask for separate checks? Did you end up having to make a large number of cash exchanges to settle debts after the fact and the resulting economic drama led to the dissolution of your friend group? Do you live in shame everyday because of how you allowed petty disputes to take precedence over years of camraderie?</p>
             <p>BillSplit solves this problem for you! Instead of haggling out money, wasting away your precious youth, simply enter all your purchases and watch as the power of <b>TECHNOLOGY</b> handles the payment transfers for you! With no more than six cash transfers, your newly reunited friends will surely welcome you back and you will never have to feel guilty about what you did ever again.</p>
         </div>

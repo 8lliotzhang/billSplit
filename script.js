@@ -3,10 +3,13 @@
 //DONE: make outdiv hidden and change this on click "done"
 //DONE: fix required thing for boxes
 //DONE: if the outdiv is already displayed, then running newpay calls finalprtout
+//DONE: favicon.
+//DONE: empty payment handling.
 //----
 //TODO: make look nice - though more of a subjective thing.
-//TODO: web icon
 //TODO: host on github?
+//TODO: sum to zero handling?
+
 
 
 //store userids umm idk why but channels array is important - stores transaction data
@@ -217,7 +220,8 @@ function finalPrtOut(){
     console.log("FINAL OUT:")
 
 //final prtout
-    var finalOut = ""    
+    var finalOut = "" 
+    var EmptyMsg = "No payments needed!"   
 
 for (let i = 0; i < channelsArray.length; i++){
         if (channelsArray[i] == 0){
@@ -233,7 +237,13 @@ for (let i = 0; i < channelsArray.length; i++){
         }
     }
     document.getElementById("outdiv").style.visibility = "visible";
-    document.getElementById("outbox").innerHTML = finalOut;
+    
+    if (finalOut != ""){
+        document.getElementById("outbox").innerHTML = finalOut;
+
+    }else{
+        document.getElementById("outbox").innerHTML = EmptyMsg;   
+    }
     //
     console.log(finalOut)
 }

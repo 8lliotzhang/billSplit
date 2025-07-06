@@ -51,6 +51,7 @@ a{
     position: absolute;
     top: 0;
     vertical-align:top;
+    visibility: hidden;
 
 }
 

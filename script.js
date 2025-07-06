@@ -1,15 +1,19 @@
 // ok uhh time to lay out the scheme
-//TODO: make certain fields required; amt, payer, min 1 bene.
-//TODO: make outdiv hidden and change this on "done"
-//TODO: make look nice
-//TODO: host
+//DONE: make certain fields required; amt, payer, min 1 bene.
+//DONE: make outdiv hidden and change this on click "done"
+//DONE: fix required thing for boxes
+//DONE: if the outdiv is already displayed, then running newpay calls finalprtout
+//----
+//TODO: make look nice - though more of a subjective thing.
+//TODO: web icon
+//TODO: host on github?
 
 
+//store userids umm idk why but channels array is important - stores transaction data
 const userArray = [1,2,3,4] 
 var channelsArray = [0,0,0,0,0,0]
 
-
-
+//le funny display text
 const outTextArrInverted = ["1 owes 2", "1 owes 3", "1 owes 4", "2 owes 3", "2 owes 4", "3 owes 4"]
 const outTextArr = ["2 owes 1", "3 owes 1", "4 owes 1", "3 owes 2", "4 owes 2", "4 owes 3"]
 
@@ -22,8 +26,28 @@ const outTextArr = ["2 owes 1", "3 owes 1", "4 owes 1", "3 owes 2", "4 owes 2", 
 //final out would of course adjust this such that it reads 2 owes 1 $5, not 1 owes 2 $-5 thatd be silly
 
 //thx to google AI for this single line
+
+//on load
 document.addEventListener('DOMContentLoaded', function() {
     
+    for (let i = 1; i < 5; i++) {
+        document.getElementById("user" + i).addEventListener("change", function() {
+            // Handle checkbox selection here
+            // Example: check if at least one is checked
+            let anyChecked = false;
+            for (let j = 1; j < 5; j++) {
+                if (document.getElementById("user" + j).checked) {
+                    anyChecked = true;
+                    unRequire();
+                    break;
+                }
+            }
+            // You can now use anyChecked to enable/disable submit, etc.
+            // Example: console.log(anyChecked);
+        });
+    }
+    
+    //on form submit
     document.getElementById("formID").addEventListener("submit", function (e) {
         e.preventDefault();
         getData(e.target);
@@ -32,6 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+function unRequire(){
+    for(i = 1; i < 5; i ++){
+        document.getElementById("user"+i).removeAttribute("required");
+    }
+    //alert("unrequired!");
+}
+
+
+
+
+//take data from form and run the newPay on it
 function getData(form){
     var fd = new FormData(form);
     var bArray = []
@@ -57,10 +93,13 @@ function getData(form){
     console.log("f amt: " + fAmt);
     newPay(fAmt, bArray, fPayer);
 }
+
 //i know, I know, I KNOW THAT THIS IS TERRIBLE WORDING
 //PAYER in this context paid FIRST
 //BENEFICIARIES are those that got something for free and are now paying back...
  
+
+//called by getData with form input
 function newPay(amt, beneficiary, payer){
 
     let amtEach = 0;
@@ -80,6 +119,8 @@ function newPay(amt, beneficiary, payer){
             //from there just do a comparator check, which one's bigger
             //from there decide positive or negative yeah
             //fun fact! by design this thing doesn't support uhh splitting bills so hopefully that's handled eventually
+            //while uhh its theoretically cleaner it still needs a bunch of checking and doesn't scale as nice - improves by 2x but still not good enough
+            //look into how to OOP this thing
 
         if (beneficiary[i] !== payer) {
 
@@ -152,13 +193,25 @@ function newPay(amt, beneficiary, payer){
 
 
         //debug basic output for the single payment
-            console.log(`Pay ${amtEach} from guy ${beneficiary[i]} to guy ${payer}`);
+        
+        console.log(`Pay ${amtEach} from guy ${beneficiary[i]} to guy ${payer}`);
+            
         }
+
+
+
     }
+    //end of if loop is just above.
 
-
+    if(document.getElementById("outdiv").style.visibility == "visible"){
+        //update prtout on the fly!
+        finalPrtOut();
+    }    
+    alert("Payment recorded. Continue recording payments, or click DONE for the final calculation.");
 }
 
+
+//called by done button
 function finalPrtOut(){
     console.log("__________")
     console.log("FINAL OUT:")
@@ -179,6 +232,7 @@ for (let i = 0; i < channelsArray.length; i++){
             finalOut = finalOut + b;
         }
     }
+    document.getElementById("outdiv").style.visibility = "visible";
     document.getElementById("outbox").innerHTML = finalOut;
     //
     console.log(finalOut)
